@@ -12,9 +12,15 @@ Created: 11 September 2025
 	grid-template-columns:1fr 360px;
 	gap:20px
 }
-@media (max-width:950px) {
+@media (max-width:768px) {
 	.grid {
 		grid-template-columns:1fr;
+	}
+	.sidebar {
+		grid-row: 1;
+    }
+	.content {
+		grid-row: 2;
 	}
 }
 
@@ -66,3 +72,5 @@ Created: 11 September 2025
 	vertical-align: middle;
 	transition: transform 0.2s, opacity 0.2s;
 }
+
+
