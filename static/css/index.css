@@ -29,6 +29,7 @@ Created: 11 September 2025
   border: 1.5px solid var(--border);
   font-size: 1.5rem;
   cursor: pointer;
+  font-size:28px;
 }
 
 /* Mobile behavior */
@@ -149,5 +150,6 @@ Created: 11 September 2025
 	vertical-align: middle;
 	transition: transform 0.2s, opacity 0.2s;
 }
+
 
 
