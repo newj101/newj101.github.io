@@ -13,21 +13,26 @@
 </head>
 <body>
   <div class="container">
-  <header>
+  <header class="site-header">
     <div class="brand">
-        <a href="index.html" class="logo">
-          <img src="../static/images/logo.svg" alt="NJ Logo" width="48" height="48">
-        </a>
+		<div class="index-logo">
+			<a href="index.html" class="logo">
+			  <img src="../static/images/logo.svg" alt="NJ Logo" width="48" height="48">
+			</a>
+		</div>
       <!--<div class="logo">NJ</div>-->
-      <div>
+      <div class="brand-text">
           <h1 style="font-size:20px; margin:0;">Nicholas E. Johnson</h1>
           <p class="lead">Atmospheric Science Ph.D. Candidate · University at Albany</p>
       </div>
     </div>
-    <nav>
-	  <a href="research.html">Research</a>
-	  <!-- <a href="{{ url_for('sounding_plotter') }}">Dropsonde Plotter</a> -->
-      <button id="toggleTheme" class="toggle-theme" onclick="toggleTheme()">🌙 Dark</button>
+    <nav class="index-nav">
+	  <button class="nav-toggle" aria-label="Toggle Menu">☰</button>
+	  <div class="nav-links">
+		  <a href="research.html">Research</a>
+		  <!-- <a href="{{ url_for('sounding_plotter') }}">Dropsonde Plotter</a> -->
+		  <button id="toggleTheme" class="toggle-theme" onclick="toggleTheme()">🌙 Dark</button>
+	  </div>
     </nav>
   </header>
 
@@ -104,7 +109,7 @@
 
   <!-- Theme script -->
   <script src="../static/js/theme.js"></script>
-
+  <script src="../static/js/header_dropdown.js"></script>
 
   <script>
   
