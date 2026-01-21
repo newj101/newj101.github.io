@@ -27,10 +27,6 @@
     <nav>
 	  <a href="research.html">Research</a>
 	  <!-- <a href="{{ url_for('sounding_plotter') }}">Dropsonde Plotter</a> -->
-      <!--<a href="research.html">Research</a>-->
-      <!--<a href="#publications">Publications</a>-->
-      <!--<a href="#projects">Projects</a>-->
-      <!--<a href="#contact">Contact</a>-->
       <button id="toggleTheme" class="toggle-theme" onclick="toggleTheme()">🌙 Dark</button>
     </nav>
   </header>
@@ -51,26 +47,8 @@
 
         <section id="publications" class="card" style="margin-top:16px">
           <h2>Publications</h2>
-			
-		  <!--
-          <div class="controls">
-            <input id="search" class="search" placeholder="Search title, coauthors, year..." />
-            <select id="yearFilter">
-              <option value="all">All years</option>
-              <option value="2025">2025</option>
-              <option value="2024">2024</option>
-              <option value="2023">2023</option>
-            </select>
-            <select id="topicFilter">
-              <option value="all">All topics</option>
-              <option value="climate">Climate</option>
-              <option value="method">Methods</option>
-            </select>
-          </div>
-		  -->
 
           <div id="pubList" class="pub-list">
-            <!-- Example items: replace with your BibTeX or manual entries -->
             <article class="pub" data-year="2025" data-topics="climate">
               <div class="meta">2025 · Journal of Geophysical Research: Atmospheres</div>
               <div class="title"> Observed downdrafts and ventilation during the rapid intensity changes of Hurricane Delta (2020)</div>
@@ -80,37 +58,7 @@
           </div>
         </section>
 
-		<!--
-        <section id="projects" class="card" style="margin-top:16px">
-          <h2>Projects Overview</h2>
-          <div class="projects">
-            <div class="proj">
-              <strong>Interactive Map App</strong>
-              <p class="meta">Python / Flask / Leaflet · downloadable plots</p>
-              <p>Short description outlining data sources and status. <a href="#" class="btn btn-ghost" onclick="openProject('p1')">Details</a></p>
-            </div>
-            <div class="proj">
-              <strong>Open dataset: Dropsonde profiles</strong>
-              <p class="meta">NetCDF · Preprocessed · DOI</p>
-              <p>Brief description and link to data repo. <a href="#" class="btn btn-ghost" onclick="openProject('p2')">Repo</a></p>
-            </div>
-            <div class="proj">
-              <strong>ML model for wind estimation</strong>
-              <p class="meta">PyTorch · Jupyter</p>
-              <p>Model description and evaluation summary. <a href="#" class="btn btn-ghost" onclick="openProject('p3')">Read more</a></p>
-            </div>
-            <div class="proj">
-              <strong>Visualization toolkit</strong>
-              <p class="meta">Plotly / D3 · Reusable components</p>
-              <p>Small library for consistent scientific figures. <a href="#" class="btn btn-ghost" onclick="openProject('p4')">Docs</a></p>
-            </div>
-          </div>
-        </section>
-		-->
-
-		
         <footer>
-          <!--<small>Looking for collaborators? Email <a href="mailto:you@university.edu">you@university.edu</a></small>-->
 		  <small>&copy; 2025 Nicholas E. Johnson</small>
         </footer>
 		
@@ -149,96 +97,17 @@
 			<!--<div><strong>GitHub</strong><div><a href="#">github.com/youruser</a></div></div>-->
           </div>
         </div>
-
-		<!--
-        <div class="card" style="margin-top:16px">
-          <h2>Quick filters</h2>
-          <label><input type="checkbox" id="showOnlyOpen" /> Only open-source projects</label>
-        </div>
-		-->
       </aside>
     </div>
 
   </div>
-
-  <!-- Simple modal for projects -->
-  <!--
-  <div id="modal" class="modal-backdrop">
-    <div class="modal">
-      <button onclick="closeModal()" style="float:right">Close</button>
-      <div id="modalContent"></div>
-    </div>
-  </div>
-  -->
 
   <!-- Theme script -->
   <script src="../static/js/theme.js"></script>
 
 
   <script>
-    // Publications: basic search+filter
-	/*
-    const searchEl = document.getElementById('search');
-    const yearFilter = document.getElementById('yearFilter');
-    const topicFilter = document.getElementById('topicFilter');
-    const pubList = document.getElementById('pubList');
-    const pubs = Array.from(pubList.children);
-
-    function filterPubs(){
-      const q = searchEl.value.trim().toLowerCase();
-      const year = yearFilter.value;
-      const topic = topicFilter.value;
-      pubs.forEach(pub=>{
-        const title = pub.querySelector('.title').textContent.toLowerCase();
-        const meta = pub.querySelector('.meta').textContent.toLowerCase();
-        const pubYear = pub.getAttribute('data-year');
-        const topics = pub.getAttribute('data-topics');
-        const matchesQ = !q || title.includes(q) || meta.includes(q);
-        const matchesYear = year==='all'||pubYear===year;
-        const matchesTopic = topic==='all'||(topics && topics.includes(topic));
-        pub.style.display = (matchesQ && matchesYear && matchesTopic) ? 'block' : 'none';
-      })
-    }
-    searchEl.addEventListener('input',filterPubs);
-    yearFilter.addEventListener('change',filterPubs);
-    topicFilter.addEventListener('change',filterPubs);
-	*/
-
-    // modal project details
-	/*
-    function openProject(id){
-      const content = {
-        p1: '<h3>Interactive Map App</h3><p>Details about dataset, stack (Flask, Leaflet), and how to run locally.</p>',
-        p2: '<h3>Dropsonde dataset</h3><p>DOI, files, how to cite.</p>',
-        p3: '<h3>ML wind model</h3><p>Model architecture, training data, performance metrics.</p>',
-        p4: '<h3>Visualization toolkit</h3><p>Installation, usage examples, available components.</p>'
-      };
-      document.getElementById('modalContent').innerHTML = content[id] || '<p>No details</p>';
-      document.getElementById('modal').style.display = 'flex';
-    }
-    function closeModal(){document.getElementById('modal').style.display='none'}
-	*/
-	
-    // Download CV (replace href with your CV path)
-	/*
-    document.getElementById('downloadCv').addEventListener('click',e=>{
-      e.preventDefault();
-      const url = 'cv.pdf'; // replace with real path
-      window.open(url,'_blank');
-    })
-	*/
-
-    // Example: toggle for quick filters
-	/*
-    document.getElementById('showOnlyOpen').addEventListener('change', e=>{
-      const onlyOpen = e.target.checked;
-      // In a real site you'd mark project elements with data-open="true"
-      // For demo we just highlight/hide the 2nd project
-      const projects = document.querySelectorAll('.proj');
-      if(onlyOpen) projects.forEach((p,i)=>{ if(i!==1) p.style.opacity=.4; }); else projects.forEach(p=>p.style.opacity=1);
-    })
-	*/
-
+  
     // Small accessibility: focus outline for keyboard users
     document.body.addEventListener('keydown', ()=>document.body.classList.add('kbd'));
 	
