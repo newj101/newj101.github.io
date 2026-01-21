@@ -28,7 +28,7 @@
     <nav>
       <a href="index.html">Home</a>
 	  <a href="research.html">Research</a>
-	  <a href="{{ url_for('sounding_plotter') }}">Dropsonde Plotter</a>
+	  <!-- <a href="{{ url_for('sounding_plotter') }}">Dropsonde Plotter</a> -->
 	  <button id="toggleTheme" class="toggle-theme" onclick="toggleTheme()">🌙 Dark</button>
     </nav>
   </header>
@@ -64,7 +64,7 @@
 						<li>By finding the median fall rate of a large set of dropsondes.</li>
 					  </ol>
 					  <p>Using the median fall rate is recommended since it accounts for variations in the dropsonde parachute and drag coefficient.</p>
-					  <a href="javascript:void(0)" id="modelButton" class="btn" style="border: none;" onclick="openModal('projectModal', '2_Abstract_VerticalWind')">View Project Abstract</a></p>
+					  <a href="javascript:void(0)" id="modelButton" class="btn" style="border: none;" onclick="openModal('projectModal2')">View Project Abstract</a></p>
 					</div>
 				  </div>
 				  <div id="pubList" class="pub-list">
@@ -86,7 +86,7 @@
 					  <p>Downdraft ventilation, which can weaken tropical cyclones and complicate intensity forecasts, can be measured with aircraft observations.</p>
 					  <p>Observations of Hurricane Delta showed deep, intense downdrafts and ventilation as rapid intensification ended and during rapid weakening.</p>
 					  <p>The results of this observational study support the findings of previous modeling studies of downdraft ventilation.</p>
-					  <a href="javascript:void(0)" id="modelButton" class="btn" style="border: none;" onclick="openModal('projectModal', '1_Abstract_HurricaneDelta')">View Project Abstract</a></p>
+					  <a href="javascript:void(0)" id="modelButton" class="btn" style="border: none;" onclick="openModal('projectModal1')">View Project Abstract</a></p>
 					</div>
 					<div class="project-image-container">
 					  <img src="../static/images/hurricane_delta.png" alt="hurricanedelta" class="project-image">
@@ -204,10 +204,30 @@
   </footer>
 
   <!-- Project abstract modal -->
-  <div id="projectModal" class="modal-background">
+  <div id="projectModal1" class="modal-background">
     <div class="modal-content">
-      <button onclick="closeModal('projectModal')" style="float:right">Close</button>
-      <div id="projectModalContent"></div>
+      <button onclick="closeModal('projectModal1')" style="float:right">Close</button>
+      <div id="projectModalContent">
+      
+        <h3>Observed downdrafts and ventilation during the rapid intensity changes of Hurricane Delta (2020)</h3>
+        <p>This study examines downdrafts and downdraft ventilation, and their effects on Hurricane Delta (2020). Delta experienced rapid intensification (RI) before abruptly weakening before making landfall. Two sampling periods by reconnaissance aircraft provided observations during RI and the subsequent rapid weakening, giving an opportunity to study the downdraft evolution and compare these two periods. Across both sampling periods, the vertical wind shear increased, causing the vortex to tilt and exposing Delta’s inner core to the surrounding environment. The increased shear provided a pathway for downdraft ventilation, the transport of low-equivalent potential temperature (θₑ) air aloft into the boundary layer via downdrafts. Aircraft Doppler radar measured intense, deep downdrafts toward the end of the RI period; however, minimal downdraft ventilation was observed. After peak intensity, during the weakening period, downdraft ventilation was more prevalent with moderate to intense downdrafts and low-θₑ  air concentrated on the left-of-tilt side of the storm. The observations show that as Delta weakened, the inner core became diluted with low-θₑ air from downdraft ventilation and the convection was limited to the downtilt and left-of-tilt regions of the storm. These findings are consistent with previous idealized and real-case modeling studies that have shown downdraft ventilation weakens tropical cyclones and degrades their structure. Additionally, the location of the downdraft ventilation observations relative to the vortex tilt and shear directions agree with previous modeling studies. More broadly, observations of the downdraft structure and diagnostics of downdraft ventilation may provide cues of subsequent intensity change in sheared storms.</p> 
+        <p>Johnson, N. E., B. H. Tang, K. L. Corbosiero and J. R. Moskaitis, 2025: <a href="static/documents/Johnsonetal_2025.pdf" target="_blank"  class="hover-link">Observed downdrafts and ventilation during the rapid intensity changes of Hurricane Delta (2020)</a>. J. Geophys. Res. Atmospheres, 130, e2024JD042915, <a href="https://doi.org/10.1029/2024JD042915" target="_blank" rel="noopener noreferrer"  class="hover-link">doi.org/10.1029/2024JD042915</a>.</p>
+              
+      </div>
+    </div>
+  </div>
+  
+    <!-- Project abstract modal -->
+  <div id="projectModal2" class="modal-background">
+    <div class="modal-content">
+      <button onclick="closeModal('projectModal2')" style="float:right">Close</button>
+      <div id="projectModalContent">
+      
+        <h3>A comparison of methods for estimating vertical wind from dropsondes</h3>
+        <p>Measuring vertical wind using dropsondes is useful for studying the dynamics and thermodynamics of tropical cyclones. Vertical wind can be estimated from dropsondes by finding the difference between the dropsonde’s measured fall rate and terminal velocity. Determining an accurate dropsonde terminal velocity is challenging since it requires either experimentation in ideal conditions, which are not reflective of tropical cyclones, or an analysis of dropsonde observations within an environment of potentiality strong convective motions. Two methods for finding the dropsonde terminal velocity and resulting vertical wind were examined. The first method determines a theoretical terminal velocity based on the dropsonde design, parachute size, and a drag coefficient. The second method estimates the dropsonde terminal velocity by finding the median fall rate of a large sample of dropsondes with similar designs. The fall rates and vertical winds were calculated from dropsondes released by NOAA and NASA aircraft from 2010–2024 using four different dropsonde models. For three of the dropsonde models, the median fall rates were faster than the corresponding theoretical terminal velocity. This difference resulted in the vertical wind estimated using the theoretical terminal velocity having a larger percentage of downward motion than upward motion. In contrast, the vertical wind estimated using the median fall rates had a more symmetric distribution of upward and downward motions. Overall, estimating vertical wind from dropsondes using the median fall rate for the corresponding dropsonde model is recommended versus using the theoretical terminal velocity.</p> 
+        <p>Johnson, N. E., B. H. Tang, K. L. Corbosiero, and H. Vömel, In Revision: A comparison of methods for estimating vertical wind from dropsondes.</p>   
+      
+      </div>
     </div>
   </div>
 
