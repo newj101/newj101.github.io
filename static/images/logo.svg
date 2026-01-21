@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Logo for website
+Created by Nicholas E. Johnson
+-->
+
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <!-- Globe circle -->
+    <circle cx="32" cy="32" r="30" fill="#4da6ff" stroke="#003366" stroke-width="2"/>
+
+    <!-- Grid lines for globe -->
+    <path d="M32 2 C32 32, 32 32, 32 62" stroke="#003366" stroke-width="1" fill="none"/>
+    <path d="M2 32 C32 32, 32 32, 62 32" stroke="#003366" stroke-width="1" fill="none"/>
+
+    <!-- Spiral-style blue arcs under the aircraft symbol -->
+    <g transform="translate(32,32)">
+      <defs>
+        <style>
+          .arc { fill: none; stroke: #0033cc; stroke-width: 2; }
+        </style>
+      </defs>
+
+      <!-- 12 spiral arcs rotated symmetrically -->
+      <path class="arc" d="M0,0 A24,24 0 0,0 16,-22" transform="rotate(0)"/>
+      <path class="arc" d="M0,0 A24,24 0 0,0 16,-22" transform="rotate(30)"/>
+      <path class="arc" d="M0,0 A24,24 0 0,0 16,-22" transform="rotate(60)"/>
+      <path class="arc" d="M0,0 A24,24 0 0,0 16,-22" transform="rotate(90)"/>
+      <path class="arc" d="M0,0 A24,24 0 0,0 16,-22" transform="rotate(120)"/>
+      <path class="arc" d="M0,0 A24,24 0 0,0 16,-22" transform="rotate(150)"/>
+      <path class="arc" d="M0,0 A24,24 0 0,0 16,-22" transform="rotate(180)"/>
+      <path class="arc" d="M0,0 A24,24 0 0,0 16,-22" transform="rotate(210)"/>
+      <path class="arc" d="M0,0 A24,24 0 0,0 16,-22" transform="rotate(240)"/>
+      <path class="arc" d="M0,0 A24,24 0 0,0 16,-22" transform="rotate(270)"/>
+      <path class="arc" d="M0,0 A24,24 0 0,0 16,-22" transform="rotate(300)"/>
+      <path class="arc" d="M0,0 A24,24 0 0,0 16,-22" transform="rotate(330)"/>
+    </g>
+
+    <!-- Airplane symbol-->
+    <g transform="translate(32,30) scale(1.2)">
+      <!-- Fuselage -->
+      <rect x="-1.5" y="-14" width="3" height="24" fill="#ffffff" fill-opacity="1"/>
+      
+      <!-- Wings (tapered) -->
+      <polygon points="-16,0 -1.5,0 -1.5,-5 -16,-3" fill="#ffffff" fill-opacity="1"/>
+      <polygon points=" 16,0  1.5,0  1.5,-5  16,-3" fill="#ffffff" fill-opacity="1"/>
+      
+      <!-- Tapered wing tips -->
+      <polygon points="-16,0 -18,-1 -16,-3" fill="#ffffff" fill-opacity="1"/>
+      <polygon points="16,0 18,-1 16,-3" fill="#ffffff" fill-opacity="1"/>
+      
+      <!-- Engine marks -->
+      <ellipse cx="-8" cy="-4" rx="2" ry="4" fill="#ffffff"/>
+      <ellipse cx="8" cy="-4" rx="2" ry="4" fill="#ffffff"/>
+      
+      <!-- Tail -->
+      <polygon points="-5.5,12 0,6 5.5,12 0,12" fill="#ffffff" fill-opacity="1"/>
+      
+      <!-- Nose -->
+      <polygon points="-1.5,-14 1.5,-14 0,-18" fill="#ffffff" fill-opacity="1"/>
+    </g>
+
+    <!-- Initials on the logo -->
+    <text x="32" y="57" text-anchor="middle" font-family="Monospace" font-size="16" fill="#ffffff" font-weight="bold">
+      NEJ
+    </text>
+</svg>

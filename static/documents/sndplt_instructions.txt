@@ -1,0 +1,75 @@
+<h2 style="margin-bottom:-10px;">Dropsonde Sounding Plotter App</h2>
+<p>
+	Author: Nicholas E. Johnson, <a target="_blank" href="mailto:nejohnson@albany.edu">nejohnson@albany.edu<a><br>
+	Last Updated: 6 November 2025<br><br>
+	Feedback is appreciated! If you have any comments or suggestions please send them to me using the "Send Feedback" button or by email.
+</p>
+
+<h3 style="margin-top: 30px;">Description</h3>
+<p>
+	This app provides an interface for plotting dropsonde soundings. Dropsonde data can be provided locally or it can be loaded remotely. The dropsonde locations are displayed on the map and can be selected to plot the sounding for that location. The sounding plot includes derived quantities including convective parameters, wind shear, lapse rates, dropsonde trajectory, and mean low-level winds (WL150 and MBLWND). Three mean sounding overlays are provided to compare with the observed soundings. In addition to plotting the sounding on the SkewT plot, dropsonde measurements at a selected height can be shown on the map.
+</p>
+
+
+<h3 style="margin-top: 30px;">Instructions</h3>
+
+<p>
+	<strong>Loading data</strong>
+	<br>
+	There are three options for loading dropsonde data:
+	<ol type="1" style="margin-top: -10px;">
+	  <li style="margin-bottom: 10px;">First, provide the TC name and year in the text boxes. Second, click the "Select Flight Codes" menu and select one or more flight codes from which to load the data. Third, click the "Load Data" button for Option 1.</li>
+	  <li style="margin-bottom: 10px;">Enter the flight code for a single flight as YYYYMMDD{A}{X}, where {A} is "H" for NOAA42, "I" for NOAA43, or "N" for NOAA49; and {X} is "1" or "2" for the first or second flight on the given aircraft and date. Then, click the "Load Data" button for Option 2.</li>
+	  <li style="margin-bottom: 10px;">Upload local dropsonde files in FRD, EOL, netCDF, or BUFR format. Then, click the "Load Data" button for Option 3.</li>
+	</ol>
+	Loading the data will take a few moments. Loading less data will speed up the process. After loading the data, the dropsonde locations will be marked on the map.
+</p>
+
+<p style="margin-top:30px;">
+	<strong>Plotting the SkewT</strong>
+	<br>
+	Using the dropsonde location points on the map, click the point for the dropsonde from which to plot the skewT. The selected dropsonde will be highlighted in red. The skewT will take a few seconds to plot. Alternatively, instead of selecting a dropsonde from the map, a skewT can be plotted by using the "-- Select a File --" dropdown menu on the top left of the skewT plot. The dropdown menu displays the file names for each dropsonde that was loaded.
+	<br><br>
+	To overlay a mean sounding use the "-- Overlay Mean Sounding --" dropdown menu above the skewT plot. Three options are currently provided from Dunion (2011): moist tropical, saharan air layer, and mid-latitude dry air intrusion. The mean soundings can be plotted regardless of whether a dropsonde sounding has been plotted.
+	<br><br>
+	The skewT may be saved or cleared using the buttons below the plot. The plot does <strong>not</strong> need to be cleared every time a new dropsonde is plotted. 
+</p>
+
+<p style="margin-top:30px;">
+	<strong>Plotting dropsonde variables</strong>
+	<br>
+	The dropsonde points on the map can be shaded to show a measured dropsonde quantity at a given height. To the right of the map, use the "-- Select Variable --" dropdown menu to select the quantity to plot. Options include: 
+	
+	<ul style="margin-top: -10px; margin-bottom:5px;">
+	  <li>Pressure (hPa)</li>
+	  <li>Temperature (°C)</li>
+	  <li>Dew Point Temperature (°C)</li>
+	  <li>Relative Humidity (%)</li>
+	  <li>Equivalent Potential Temperature (K)</li>
+	  <li>Wind Speed (m/s)</li>
+	  <li>Vertical Wind* (m/s)</li>
+	</ul>
+
+	The value of the quantity for each dropsonde can be viewed by hovering the curser over the dropsonde point on the map. The height of the dropsonde quantity shown on the map can be set using the height slider or by entering a height in the input box below the variable selection dropdown menu.
+	<br><br>
+	*The vertical wind measurements are estimates and may have significant errors.
+</p>
+
+<p style="margin-top:30px;">
+	<strong>Additional Information</strong>
+	<ul style="margin-top: -10px; margin-bottom:5px;">
+		<li style="margin-bottom: 10px;">The app may be reset using the "Reset App" button. Reseting the app will remove all loaded dropsonde data and return all settings to defaults.</li>
+		<li style="margin-bottom: 10px;">WL150 is the average wind over the lowest available 150 m of the wind sounding. Information about the WL150 algorithm can be found <a target="_blank" href="https://ncar.github.io/aspendocs/algo_wl150.html">here<a>.</li>
+		<li style="margin-bottom: 10px;">MBLWND is the mean boundary level wind. The mean wind in the lowest 500 meters of the sounding</li>
+	</ul>
+</p>
+
+
+<h3 style="margin-top: 30px;">Acknowlegements</h3>
+
+<p>
+	<ul style="margin-top: -10px; margin-bottom:5px;">
+		<li style="margin-bottom: 10px;">The sounding plot is inspired by the <a target="_blank" href="https://github.com/sharppy/SHARPpy">SHARPpy</a> toolkit and relies on <a target="_blank" href="https://unidata.github.io/MetPy/latest/index.html">MetPy</a> tools to generate the SkewT plot and calculate sounding quantities.</li>
+		<li style="margin-bottom: 10px;">The mean soundings are from <a target="_blank" href="https://doi.org/10.1175/2010JCLI3496.1">Dunion (2011)</a>.</li>
+	</ul>
+</p>

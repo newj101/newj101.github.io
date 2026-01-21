@@ -1,0 +1,68 @@
+/*
+CSS styles for home page of website
+
+Author: Nicholas E. Johnson
+Created: 11 September 2025
+*/
+
+
+/* Page Grid */
+.grid {
+	display:grid;
+	grid-template-columns:1fr 360px;
+	gap:20px
+}
+@media (max-width:950px) {
+	.grid {
+		grid-template-columns:1fr;
+	}
+}
+
+
+/* Keyword Tags*/
+.tags {
+	display:flex;
+	gap:8px;
+	flex-wrap:wrap
+}
+.tag {
+	background:rgba(2,132,199,0.08);
+	padding:6px 8px;
+	border-radius:999px;
+	font-size:13px;
+	color:var(--accent)
+}
+
+/* ///////////////////////////////////////////////////////// */
+/* //////////// Sidebar on home page formatting //////////// */
+/* ///////////////////////////////////////////////////////// */
+
+/* Contact info on sidebar */
+.sidebar .contact {
+	display:flex;
+	flex-direction:column;
+	gap:8px
+}
+
+.profile-pic-container {
+  display: flex;
+  justify-content: center;  /* center image above card */
+  margin-bottom: 16px;
+}
+
+.profile-pic {
+  width: 140px;               /* adjust size as needed */
+  height: 140px;
+  border-radius: 50%;         /* circular image */
+  object-fit: cover;          /* crop nicely */
+  object-position: 35% 50%;  /* center the subject */
+  border: 3px solid var(--accent);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.linkedin-logo {
+	width: 38px;       /* size of logo */
+	height: 32px;
+	vertical-align: middle;
+	transition: transform 0.2s, opacity 0.2s;
+}
