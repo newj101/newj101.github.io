@@ -67,6 +67,5 @@ function enableOutsideClickToClose(modalID) {
 }
 
 // Enable click outside to close for instruction and feedback modals
-enableOutsideClickToClose("projectModal"); // on research page
-enableOutsideClickToClose("instructionsModal"); // on sounding plotter page
-enableOutsideClickToClose("feedbackModal"); // on sounding plotter page
+enableOutsideClickToClose("projectModal1"); // on research page
+enableOutsideClickToClose("projectModal2"); // on research page
