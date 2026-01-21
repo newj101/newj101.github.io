@@ -6,6 +6,86 @@ Created: 11 September 2025
 */
 
 
+/* Index header */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  position: relative;
+}
+
+/* Nav links inline on desktop */
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-toggle {
+  display: none; /* hidden on desktop */
+  background: none;
+  border: 1.5px solid var(--border);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Mobile behavior */
+@media (max-width: 768px) {
+	
+  .site-header {
+    flex-direction: row;
+	justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Show hamburger button */
+  .nav-toggle {
+    display: block;
+    align-self: flex-end;
+	color:var(--text);
+  }
+
+  /* Hide nav links initially */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: var(--modal-bg);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 150px;
+    padding: 0.5rem 0;
+    z-index: 1000;
+	border-radius:var(--radius);
+	box-shadow:0 4px 12px rgba(0,0,0,.08);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links a, .nav-links .toggle-theme {
+	all:unset;
+    padding: 0.5rem 1rem;
+	
+	background:var(--modal-bg);
+	font-size:14px;
+	color:var(--muted);
+	justify-content:left;
+	
+	/* Force remove border and background */
+	border: none !important;  
+  }  
+ 
+	.nav-links a:hover, .nav-links .toggle-theme:hover {
+		background:var(--glass);
+		color:var(--accent)
+	}	
+  
+}
+
 /* Page Grid */
 .grid {
 	display:grid;
@@ -19,9 +99,6 @@ Created: 11 September 2025
 	.sidebar {
 		grid-row: 1;
     }
-	.content {
-		grid-row: 2;
-	}
 }
 
 
@@ -46,8 +123,8 @@ Created: 11 September 2025
 /* Contact info on sidebar */
 .sidebar .contact {
 	display:flex;
-	flex-direction:column;
-	gap:8px
+	flex-direction:row;
+	gap:20px
 }
 
 .profile-pic-container {
