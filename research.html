@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nicholas E. Johnson — Research</title>
+  
+  <!-- Load CSS Style File -->
+  <link rel="stylesheet" href="../static/css/main.css">
+  <link rel="stylesheet" href="../static/css/research.css">
+  
+</head>
+<body>
+  <!-- Special style for header in research page that does not match home -->
+  <header style="padding:16px 24px; background:var(--card); box-shadow:0 2px 8px rgba(0,0,0,0.1)">
+    <div class="brand">
+        <a href="index.html" class="logo">
+          <img src="../static/images/logo.svg" alt="NJ Logo" width="48" height="48">
+        </a>
+      <!--<div class="logo">NJ</div>-->
+	  <div>
+          <h2 style="margin-bottom: 0px; margin-top: 0px;">Research</h2>
+          <p class="lead">Nicholas E. Johnson</p>
+      </div>
+      <!-- <h2>Nicholas E. Johnson — Research</h2> -->
+	  
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+	  <a href="research.html">Research</a>
+	  <a href="{{ url_for('sounding_plotter') }}">Dropsonde Plotter</a>
+	  <button id="toggleTheme" class="toggle-theme" onclick="toggleTheme()">🌙 Dark</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Research Overview -->
+    <section class="card" style="font-size: 13pt;">
+      <h2>Research Overview</h2>
+      <p>My current research seeks to understand processes that affect tropical cyclone intensity, such as ventilation: the injection of cool, dry environmental air into sheared storms. A combination of observations from aerial reconnaissance and satellites, along with simulations from operational models, are used to examine these processes.
+	  <br><br>
+	  In previous research, I studied methods for estimating surface wind speed in tropical cyclones from aircraft observations and examined forecasting challenges for wind and fog that impact avation.
+	  <br><br>
+	  My current research is funded by the Future Investigators in NASA Earth and Space Science and Technology (FINESST) fellowship. Previous research was supported by the Naval Research Enterprise Intern Program (NREIP) and the NOAA Hollings Scholarship.</p>
+    </section>
+
+
+	<section id="currentProjects">
+	  <h2 class="section-header">Ph.D. Projects</h2>
+	  <div class="projects-container">
+			
+			<!-- Project 2: Vertical Wind from Dropsondes-->
+			<div class="card" style="margin-top: 20px; font-size: 13pt;">
+				<div class="project-card image-left">
+				  <div class="project-content">
+					<div class="project-image-container">
+					  <img src="../static/images/vertical_wind_project.png" alt="hurricanedelta" class="project-image">
+					</div>
+					<div class="project-text">
+					  <h3>Estimating Vertical Wind from Dropsondes</h3>
+					  <p>Two methods for finding the dropsonde terminal velocity and resulting vertical wind were examined:</p>
+					  <ol>
+						<li>Using a theoretical fall rate based on dropsonde characteristics.</li>
+						<li>By finding the median fall rate of a large set of dropsondes.</li>
+					  </ol>
+					  <p>Using the median fall rate is recommended since it accounts for variations in the dropsonde parachute and drag coefficient.</p>
+					  <a href="javascript:void(0)" id="modelButton" class="btn" style="border: none;" onclick="openModal('projectModal', '2_Abstract_VerticalWind')">View Project Abstract</a></p>
+					</div>
+				  </div>
+				  <div id="pubList" class="pub-list">
+					<article class="pub" data-year="2025" data-topics="">
+					  <div class="meta">Submitted to Journal of Atmospheric and Oceanic Technology</div>
+					  <div class="title">A comparison of methods for estimating vertical wind from dropsondes</div>
+					  <div><small>Johnson, N.E., B. Tang, K. Corbosiero, H. Vömel</div><!-- · <a href="../static/documents/Johnsonetal_2025.pdf" class="btn btn-ghost" target="_blank">PDF</a> <a href="https://doi.org/10.1029/2024JD042915" class="btn" target="_blank">DOI</a></small></div>-->
+					</article>
+				  </div>
+				</div>
+			</div>
+
+			<!-- Project 1: Downdraft ventilation in Delta-->
+			<div class="card" style="margin-top: 20px; font-size: 13pt;">	
+				<div class="project-card">
+				  <div class="project-content">
+					<div class="project-text">
+					  <h3>Downdraft Ventilation in Hurricane Delta (2020)</h3>
+					  <p>Downdraft ventilation, which can weaken tropical cyclones and complicate intensity forecasts, can be measured with aircraft observations.</p>
+					  <p>Observations of Hurricane Delta showed deep, intense downdrafts and ventilation as rapid intensification ended and during rapid weakening.</p>
+					  <p>The results of this observational study support the findings of previous modeling studies of downdraft ventilation.</p>
+					  <a href="javascript:void(0)" id="modelButton" class="btn" style="border: none;" onclick="openModal('projectModal', '1_Abstract_HurricaneDelta')">View Project Abstract</a></p>
+					</div>
+					<div class="project-image-container">
+					  <img src="../static/images/hurricane_delta.png" alt="hurricanedelta" class="project-image">
+					</div>
+				  </div>
+				  <div id="pubList" class="pub-list">
+					<article class="pub" data-year="2025" data-topics="">
+					  <div class="meta">2025 · Journal of Geophysical Research: Atmospheres</div>
+					  <div class="title">Observed downdrafts and ventilation during the rapid intensity changes of Hurricane Delta (2020)</div>
+					  <div><small>Johnson, N.E., B. Tang, K. Corbosiero, J. Moskaitis · <a href="../static/documents/Johnsonetal_2025.pdf" class="btn btn-ghost" target="_blank">PDF</a> <a href="https://doi.org/10.1029/2024JD042915" class="btn" target="_blank">DOI</a></small></div>
+					</article>
+				  </div>
+				</div>		
+			</div>
+
+
+			
+		</div>
+	</section>
+
+	<section id="previousProjects">
+	  <h2 class="section-header">Previous Projects</h2>
+	  
+	  <!-- 
+	  <div class="projects-container">
+			<!- - NASA SPoRT AdF Project- ->
+			<div class="card" style="margin-top: 20px; font-size: 13pt;">	
+				<div class="project-card">
+				  <div class="project-content">
+					<div class="project-text">
+					  <h3>Tropical Cyclone Surface Wind Speed Estimation</h3>
+					  <!- -<p>Add points</p>- ->
+					  <!- -<a href="#"  id="modelButton" class="btn" onclick="openProject('1_Abstract_HurricaneDelta')">View Project Abstract</a></p>- ->
+					</div>
+					<div class="project-image-container">
+					  <!- -<img src="../static/images/hurricane_delta.png" alt="hurricanedelta" class="project-image">- ->
+					</div>
+				  </div>
+				  <div id="pubList" class="pub-list">
+					<article class="pub" data-year="2025" data-topics="climate">
+					  <div class="meta">2020 · Undergraduate Honors Capstone Project</div>
+					  <div class="title">Estimating surface wind speed in tropical cyclones through integration of NOAA Hurricane Hunter aircraft observations</div>
+					  <div><small>Johnson, N.E.W., P. Duran, R. Wade · <a href="../static/documents/UAH_Honors_Capstone.pdf" class="btn btn-ghost" target="_blank">PDF</a> <a href="https://louis.uah.edu/honors-capstones/424" class="btn" target="_blank">Online</a></small></div>
+					</article>
+				  </div>
+				</div>		
+			</div>
+			 -->
+			
+			<div class="card" style="margin-top: 20px;">
+				<h2> Previous work coming soon</h2>
+			</div>
+			
+			<!-- Hollings Project-->
+			<!--
+			<div class="card" style="margin-top: 20px; font-size: 13pt;">	
+				<div class="project-card">
+				  <div class="project-content">
+					<div class="project-text">
+					  <h3>Hollings Project</h3>
+					  <p>Add points</p>
+					  <!- -<a href="#"  id="modelButton" class="btn" onclick="openProject('1_Abstract_HurricaneDelta')">View Project Abstract</a></p>- ->
+					</div>
+					<div class="project-image-container">
+					  <!- -<img src="../static/images/hurricane_delta.png" alt="hurricanedelta" class="project-image">- ->
+					</div>
+				  </div>
+				</div>		
+			</div>
+			-->
+			
+			<!-- NWS Memphis Project-->
+			<!--
+			<div class="card" style="margin-top: 20px; font-size: 13pt;">	
+				<div class="project-card">
+				  <div class="project-content">
+					<div class="project-text">
+					  <h3>NWS Memphis Project</h3>
+					  <p>Add points</p>
+					  <!- -<a href="#"  id="modelButton" class="btn" onclick="openProject('1_Abstract_HurricaneDelta')">View Project Abstract</a></p>- ->
+					</div>
+					<div class="project-image-container">
+					  <!- -<img src="../static/images/hurricane_delta.png" alt="hurricanedelta" class="project-image">- ->
+					</div>
+				  </div>
+				</div>		
+			</div>
+			-->
+	  </div>
+	</section>
+
+
+
+
+
+
+    <!-- Publications -->
+	<!--
+    <section class="card" style="margin-top: 20px;">
+      <h2>Publications</h2>
+      <div id="pubList" class="pub-list">
+            <article class="pub" data-year="2025" data-topics="climate">
+              <div class="meta">2025 · Journal of Geophysical Research: Atmospheres</div>
+              <div class="title"> Observed downdrafts and ventilation during the rapid intensity changes of Hurricane Delta (2020)</div>
+              <div><small>Johnson, N.E., B. Tang, K. Corbosiero, J. Moskaitis · <a href="../static/documents/Johnsonetal_2025.pdf" class="btn btn-ghost" target="_blank">PDF</a> <a href="https://doi.org/10.1029/2024JD042915" class="btn" target="_blank">DOI</a></small></div>
+            </article>
+	  </div>
+    </section>
+	-->
+
+  </main>
+
+  <footer>
+    <small>&copy; 2025 Nicholas E. Johnson</small>
+  </footer>
+
+  <!-- Project abstract modal -->
+  <div id="projectModal" class="modal-background">
+    <div class="modal-content">
+      <button onclick="closeModal('projectModal')" style="float:right">Close</button>
+      <div id="projectModalContent"></div>
+    </div>
+  </div>
+
+  <!-- Theme and modal script -->
+  <script src="../static/js/modal.js"></script>
+  <script src="../static/js/theme.js"></script>
+
+  <script>
+	
+	// Code for adding citation to page directly from .bib file
+	// Not working very well right now
+	/*
+	// Automatically load citations on page load
+	document.addEventListener("DOMContentLoaded", () => {
+		displayBibEntries("../static/documents/bibliography.bib", "pubList");
+	});
+	function displayBibEntries(bibFilePath, containerId) {
+		fetch(bibFilePath)
+		.then(res => res.text())
+		.then(bibText => {
+		  const container = document.getElementById(containerId);
+		  container.innerHTML = "";
+
+		  const entries = bibText.split('@').filter(e => e.trim() !== '');
+		  entries.forEach(entry => {
+			const titleMatch = entry.match(/title\s*=\s*[{"](.+?)[}"]/i);
+			const authorsMatch = entry.match(/author\s*=\s*[{"](.+?)[}"]/i);
+			const journalMatch = entry.match(/journal\s*=\s*[{"](.+?)[}"]/i);
+			const yearMatch = entry.match(/year\s*=\s*[{"](.+?)[}"]/i);
+			const topicsMatch = entry.match(/keywords\s*=\s*[{"](.+?)[}"]/i); // optional
+
+			const title = titleMatch ? titleMatch[1] : "Untitled";
+			const authors = authorsMatch ? authorsMatch[1] : "Unknown Author";
+			const journal = journalMatch ? journalMatch[1] : "";
+			const year = yearMatch ? yearMatch[1] : "n.d.";
+			const topics = topicsMatch ? topicsMatch[1] : "";
+
+			// Create pub container
+			const pubDiv = document.createElement("div");
+			pubDiv.classList.add("pub");
+			pubDiv.setAttribute("data-year", year);
+			pubDiv.setAttribute("data-topics", topics);
+
+			// Create internal divs
+			const titleDiv = document.createElement("div");
+			titleDiv.classList.add("title");
+			titleDiv.textContent = title;
+
+			const authorsDiv = document.createElement("div");
+			authorsDiv.classList.add("authors");
+			authorsDiv.textContent = authors;
+
+			const metaDiv = document.createElement("div");
+			metaDiv.classList.add("meta");
+			metaDiv.textContent = `${journal}, ${year}`;
+
+			// Append internal divs to pub container
+			pubDiv.appendChild(titleDiv);
+			pubDiv.appendChild(authorsDiv);
+			pubDiv.appendChild(metaDiv);
+
+			// Append pub to container
+			container.appendChild(pubDiv);
+		  });
+		})
+		.catch(error => console.error("Error loading BibTeX:", error));
+	}
+	*/
+
+  </script>
+</body>
+</html>

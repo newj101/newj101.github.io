@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nicholas E. Johnson</title>
+  <meta name="description" content="Website for Nicholas E. Johnson" />
+  
+  <!-- Load CSS Style File -->
+  <link rel="stylesheet" href="../static/css/main.css">
+  <link rel="stylesheet" href="../static/css/index.css">
+  
+</head>
+<body>
+  <div class="container">
+  <header>
+    <div class="brand">
+        <a href="index.html" class="logo">
+          <img src="../static/images/logo.svg" alt="NJ Logo" width="48" height="48">
+        </a>
+      <!--<div class="logo">NJ</div>-->
+      <div>
+          <h1 style="font-size:20px; margin:0;">Nicholas E. Johnson</h1>
+          <p class="lead">Atmospheric Science Ph.D. Candidate · University at Albany</p>
+      </div>
+    </div>
+    <nav>
+	  <a href="research.html">Research</a>
+	  <a href="{{ url_for('sounding_plotter') }}">Dropsonde Plotter</a>
+      <!--<a href="research.html">Research</a>-->
+      <!--<a href="#publications">Publications</a>-->
+      <!--<a href="#projects">Projects</a>-->
+      <!--<a href="#contact">Contact</a>-->
+      <button id="toggleTheme" class="toggle-theme" onclick="toggleTheme()">🌙 Dark</button>
+    </nav>
+  </header>
+
+    <div class="grid">
+      <main>
+        <section id="research" class="card">
+          <h2>Research Overview</h2>
+          <p>My research seeks to understand processes that affect tropical cyclone intensity, such as ventilation: the injection of cool, dry environmental air into sheared storms. A combination of observations from aerial reconnaissance and satellites, along with simulations from operational models, are used to examine these processes. 
+		  <br><br>
+		  I participated in NASA's CPEX-CV field project and the Naval Research Enterprise Intern Program. I am also a Future Investigators in NASA Earth and Space Science and Technology (FINESST) fellow.</p>
+          <div style="margin-top:12px" class="tags">
+            <div class="tag">Tropical Cyclones</div>
+            <div class="tag">Data Analysis</div>
+            <div class="tag">Python Software Development</div>
+          </div>
+        </section>
+
+        <section id="publications" class="card" style="margin-top:16px">
+          <h2>Publications</h2>
+			
+		  <!--
+          <div class="controls">
+            <input id="search" class="search" placeholder="Search title, coauthors, year..." />
+            <select id="yearFilter">
+              <option value="all">All years</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+            </select>
+            <select id="topicFilter">
+              <option value="all">All topics</option>
+              <option value="climate">Climate</option>
+              <option value="method">Methods</option>
+            </select>
+          </div>
+		  -->
+
+          <div id="pubList" class="pub-list">
+            <!-- Example items: replace with your BibTeX or manual entries -->
+            <article class="pub" data-year="2025" data-topics="climate">
+              <div class="meta">2025 · Journal of Geophysical Research: Atmospheres</div>
+              <div class="title"> Observed downdrafts and ventilation during the rapid intensity changes of Hurricane Delta (2020)</div>
+			  
+              <div><small>Johnson, N.E., B. Tang, K. Corbosiero, J. Moskaitis · <a href="../static/documents/Johnsonetal_2025.pdf" class="btn btn-ghost" target="_blank">PDF</a> <a href="https://doi.org/10.1029/2024JD042915" class="btn" target="_blank">DOI</a></small></div>
+            </article>
+          </div>
+        </section>
+
+		<!--
+        <section id="projects" class="card" style="margin-top:16px">
+          <h2>Projects Overview</h2>
+          <div class="projects">
+            <div class="proj">
+              <strong>Interactive Map App</strong>
+              <p class="meta">Python / Flask / Leaflet · downloadable plots</p>
+              <p>Short description outlining data sources and status. <a href="#" class="btn btn-ghost" onclick="openProject('p1')">Details</a></p>
+            </div>
+            <div class="proj">
+              <strong>Open dataset: Dropsonde profiles</strong>
+              <p class="meta">NetCDF · Preprocessed · DOI</p>
+              <p>Brief description and link to data repo. <a href="#" class="btn btn-ghost" onclick="openProject('p2')">Repo</a></p>
+            </div>
+            <div class="proj">
+              <strong>ML model for wind estimation</strong>
+              <p class="meta">PyTorch · Jupyter</p>
+              <p>Model description and evaluation summary. <a href="#" class="btn btn-ghost" onclick="openProject('p3')">Read more</a></p>
+            </div>
+            <div class="proj">
+              <strong>Visualization toolkit</strong>
+              <p class="meta">Plotly / D3 · Reusable components</p>
+              <p>Small library for consistent scientific figures. <a href="#" class="btn btn-ghost" onclick="openProject('p4')">Docs</a></p>
+            </div>
+          </div>
+        </section>
+		-->
+
+		
+        <footer>
+          <!--<small>Looking for collaborators? Email <a href="mailto:you@university.edu">you@university.edu</a></small>-->
+		  <small>&copy; 2025 Nicholas E. Johnson</small>
+        </footer>
+		
+      </main>
+
+      <aside class="sidebar">
+
+        <section id="about" class="card">
+          <div class="profile-pic-container">
+			<img src="../static/images/heatshot_nejohnson.heic" alt="Nicholas E. Johnson" class="profile-pic">
+          </div>
+		
+          <h2>About</h2>
+          <p>I am a Ph.D. Candidate and Research Assistant in my 6th year at the University at Albany where I study tropical cyclones using aircraft observations.</p>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <a class="btn btn-primary" href="../static/documents/CV.pdf" id="downloadCv" target="_blank">View CV</a>
+            <a class="btn btn-ghost" href="mailto:nejohnson@albany.edu" target="_blank">Contact</a>
+          </div>
+        </section>
+
+        <div class="card" style="margin-top:16px">
+          <h2>Contact</h2>
+          <div class="contact">
+            <div style="margin-bottom: 2px;"><strong>Email</strong><div><a href="mailto:nejohnson@albany.edu">nejohnson@albany.edu</a></div></div>
+			
+			<!--
+			<a href="mailto:nejohnson@albany.edu"" target="_blank">
+				<img src="../static/images/email_logo.webp" alt="Email" class="linkedin-logo">
+			</a>
+			
+			<a href="https://www.linkedin.com/in/nicholas-e-w-johnson" target="_blank" rel="noopener noreferrer">
+				<img src="../static/images/linkedin_logo.png" alt="LinkedIn" class="linkedin-logo">
+			</a>
+			-->
+			
+			<!--<div><strong>GitHub</strong><div><a href="#">github.com/youruser</a></div></div>-->
+          </div>
+        </div>
+
+		<!--
+        <div class="card" style="margin-top:16px">
+          <h2>Quick filters</h2>
+          <label><input type="checkbox" id="showOnlyOpen" /> Only open-source projects</label>
+        </div>
+		-->
+      </aside>
+    </div>
+
+  </div>
+
+  <!-- Simple modal for projects -->
+  <!--
+  <div id="modal" class="modal-backdrop">
+    <div class="modal">
+      <button onclick="closeModal()" style="float:right">Close</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+  -->
+
+  <!-- Theme script -->
+  <script src="../static/js/theme.js"></script>
+
+
+  <script>
+    // Publications: basic search+filter
+	/*
+    const searchEl = document.getElementById('search');
+    const yearFilter = document.getElementById('yearFilter');
+    const topicFilter = document.getElementById('topicFilter');
+    const pubList = document.getElementById('pubList');
+    const pubs = Array.from(pubList.children);
+
+    function filterPubs(){
+      const q = searchEl.value.trim().toLowerCase();
+      const year = yearFilter.value;
+      const topic = topicFilter.value;
+      pubs.forEach(pub=>{
+        const title = pub.querySelector('.title').textContent.toLowerCase();
+        const meta = pub.querySelector('.meta').textContent.toLowerCase();
+        const pubYear = pub.getAttribute('data-year');
+        const topics = pub.getAttribute('data-topics');
+        const matchesQ = !q || title.includes(q) || meta.includes(q);
+        const matchesYear = year==='all'||pubYear===year;
+        const matchesTopic = topic==='all'||(topics && topics.includes(topic));
+        pub.style.display = (matchesQ && matchesYear && matchesTopic) ? 'block' : 'none';
+      })
+    }
+    searchEl.addEventListener('input',filterPubs);
+    yearFilter.addEventListener('change',filterPubs);
+    topicFilter.addEventListener('change',filterPubs);
+	*/
+
+    // modal project details
+	/*
+    function openProject(id){
+      const content = {
+        p1: '<h3>Interactive Map App</h3><p>Details about dataset, stack (Flask, Leaflet), and how to run locally.</p>',
+        p2: '<h3>Dropsonde dataset</h3><p>DOI, files, how to cite.</p>',
+        p3: '<h3>ML wind model</h3><p>Model architecture, training data, performance metrics.</p>',
+        p4: '<h3>Visualization toolkit</h3><p>Installation, usage examples, available components.</p>'
+      };
+      document.getElementById('modalContent').innerHTML = content[id] || '<p>No details</p>';
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal(){document.getElementById('modal').style.display='none'}
+	*/
+	
+    // Download CV (replace href with your CV path)
+	/*
+    document.getElementById('downloadCv').addEventListener('click',e=>{
+      e.preventDefault();
+      const url = 'cv.pdf'; // replace with real path
+      window.open(url,'_blank');
+    })
+	*/
+
+    // Example: toggle for quick filters
+	/*
+    document.getElementById('showOnlyOpen').addEventListener('change', e=>{
+      const onlyOpen = e.target.checked;
+      // In a real site you'd mark project elements with data-open="true"
+      // For demo we just highlight/hide the 2nd project
+      const projects = document.querySelectorAll('.proj');
+      if(onlyOpen) projects.forEach((p,i)=>{ if(i!==1) p.style.opacity=.4; }); else projects.forEach(p=>p.style.opacity=1);
+    })
+	*/
+
+    // Small accessibility: focus outline for keyboard users
+    document.body.addEventListener('keydown', ()=>document.body.classList.add('kbd'));
+	
+  </script>
+</body>
+</html>
