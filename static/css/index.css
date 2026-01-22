@@ -125,7 +125,8 @@ Created: 11 September 2025
 .sidebar .contact {
 	display:flex;
 	flex-direction:row;
-	gap:20px
+	gap:20px;
+	align-items: flex-end;
 }
 
 .profile-pic-container {
