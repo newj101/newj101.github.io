@@ -60,7 +60,7 @@ Created by Nicholas E. Johnson
     </g>
 
     <!-- Initials on the logo -->
-    <text x="32" y="57" text-anchor="middle" font-family="Monospace" font-size="16" fill="#ffffff" font-weight="bold">
+    <!--<text x="32" y="57" text-anchor="middle" font-family="Monospace" font-size="16" fill="#ffffff" font-weight="bold">
       NEJ
-    </text>
+    </text>-->
 </svg>
