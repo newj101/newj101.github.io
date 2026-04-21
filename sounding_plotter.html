@@ -12,8 +12,6 @@
     <link rel="shortcut icon" href="favicon.ico">
 	
 	<!-- Javascript libraries for reading dropsonde data -->
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/> -->
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script> -->
 	<script src="https://cdn.jsdelivr.net/npm/jsfive@0.3.10/dist/browser/hdf5.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/netcdfjs@latest/dist/netcdfjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
@@ -25,7 +23,7 @@
 	<header style="padding:16px 24px; background:var(--card); box-shadow:0 2px 8px rgba(0,0,0,0.1)">
 	<div class="brand">
 		<a class="logo" onclick="openModal('instructionsModal', 'sndplt_instructions')" style="cursor: pointer;">
-          <img src="snd_plotter_logo.svg" alt="NJ Logo" width="48" height="48">
+          <img src="../static/images/snd_plotter_logo.svg" alt="NJ Logo" width="48" height="48">
 		</a>
         <!--<div class="logo">NJ</div>-->
         <div>
@@ -155,7 +153,7 @@
 		<!-- Container for sounding plot. Fill with blank SkewT -->
 		<div id="sounding-plot">
 		<!-- <div id="loader"><div class="spinner"></div></div> -->
-			<img id="plot-img" src="blank_plot.png" alt="Blank Image" style="width:1000px; margin: 20px 0px 20px 0px; display:block;"/>
+			<img id="plot-img" src="../static/images/blank_plot.png" alt="Blank Image" style="width:1000px; margin: 20px 0px 20px 0px; display:block;"/>
 		</div>
 		
 		<!-- Buttons to save and clear plot -->
@@ -231,11 +229,10 @@
 				<p>
 					<strong>Loading data</strong>
 					<br>
-					There are three options for loading dropsonde data:
+					There are two options for loading dropsonde data:
 					<ol type="1" style="margin-top: -10px;">
-					  <li style="margin-bottom: 10px;">First, provide the TC name and year in the text boxes. Second, click the "Select Flight Codes" menu and select one or more flight codes from which to load the data. Third, click the "Load Data" button for Option 1.</li>
-					  <li style="margin-bottom: 10px;">Enter the flight code for a single flight as YYYYMMDD{A}{X}, where {A} is "H" for NOAA42, "I" for NOAA43, or "N" for NOAA49; and {X} is "1" or "2" for the first or second flight on the given aircraft and date. Then, click the "Load Data" button for Option 2.</li>
-					  <li style="margin-bottom: 10px;">Upload local dropsonde files in FRD, EOL, netCDF, or BUFR format. Then, click the "Load Data" button for Option 3.</li>
+					  <li style="margin-bottom: 10px;">Select a flight(s) from the data browser.</li>
+					  <li style="margin-bottom: 10px;">Type a flight ID or url to a dropsonde file in the input box.</li>
 					</ol>
 					Loading the data will take a few moments. Loading less data will speed up the process. After loading the data, the dropsonde locations will be marked on the map.
 				</p>
@@ -315,8 +312,7 @@
 	
 
     <!-- Java script code for buttons, dropdown menus, map amd connection to Python backend-->
-    <!-- <script src="../static/js/sounding_plotter.js"></script> -->
-    <script src="sounding_plotter.js"></script>
+    <script src="../static/js/sounding_plotter.js"></script>
 
 
 
