@@ -1033,9 +1033,11 @@ function buildSonde(pres, temp, dewp, wspd, wdir, sLatArr, sLonArr, sAltArr, sTi
 //####################################################
 
 // Activate real-time mode on page load
+/*
 document.addEventListener("DOMContentLoaded", function() {
-	realtime_deactivate();
+	realtime_activate();
 });
+*/
 
 const data_selector_row = document.getElementById('data-browser');
 const rt_controls_row = document.getElementById('rt_controls');
