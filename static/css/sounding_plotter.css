@@ -1,0 +1,616 @@
+/*
+CSS styles for sounding_plotter app
+
+Author: Nicholas E. Johnson
+Created: 09 July 2025
+*/
+
+
+/* Colors for text boxes for light and dark mode */
+:root{
+	--input-bg:#ffffff;
+	--input-text:#000000;
+	--input-hover:#1e90ff; /*#f0f0f0;*/
+	--input-border: rgba(0,0,0,0.3);
+	--drop-bg:#f0f8ff;
+	--drop-border:#333;
+	--btn-bg:#D3D3D350;
+	--btn-text:rgba(0,0,0,0.8);/*#475569;*/
+	--btn-border:rgba(0,0,0,0.08);
+	
+	--text-dim: #4a5568;
+	--border: #1e2530;
+	--amber: #f5a623;
+	--amber-dim: #8a5c0f;
+	
+	--red:#aa4444;
+	--green:#116633;
+	--orange:#b37719;
+	--browser-bg:#eeeeee;
+	--browser_subtext:#333;
+	--browser-hover:#2d2d2d;
+	--browser-hover-text:#f5f5f5;
+}
+body.dark{
+	--input-bg:#2a2b2d; /*#222; */
+	--input-text:#f2f2f2;
+	--input-hover:#1e90ff; /*#2a2a2a;*/
+	--input-border: #ccc;
+	--drop-bg:#2a2b2d;
+	--drop-border:rgba(255,255,255,0.8);
+	--btn-bg:#475569;
+	--btn-text:#f2f2f2;
+	--btn-border:rgba(255,255,255,0.08);
+	
+	--red:#dd7777;
+	--green: #44ff88;
+	--orange:#f5a623;
+	--browser-bg:#0d1117;
+	--browser_subtext:#d3d3d3;
+	--browser-hover:#2d2d2d;
+	--browser-hover-text:#99b;
+}
+
+/*#######################################################*/
+/*################### Body Formatting ###################*/
+/*#######################################################*/
+/*
+body {
+      margin: 0px;
+      font-family: sans-serif;
+    }
+*/
+
+/* Main content has margin around it */
+
+.site-main {
+  margin: 20px;   /* adds space around the page content */
+}
+
+/* For buttons at top f page */
+.app-btns {
+  display: flex;
+  align-items: right;
+  gap: 15px;          /* spacing between buttons */
+  margin-bottom: 20px;
+  width: 1040px;
+}
+
+.right-btns {
+  margin-left: auto; /* pushes this group to the right */
+  display: flex;
+  gap: 8px;
+}
+
+
+/*######################################################*/
+/*################### Feedback Modal ###################*/
+/*######################################################*/
+
+/* Inputs for feedback modal*/
+#feedbackModalForm input, #feedbackModalForm textarea {
+  width: 98%;
+  padding: 10px;
+  margin: 6px 0;
+  /* border: 1px solid #ccc; */
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  background: var(--input-bg);
+  color: var(--text);
+}
+
+#feedbackModalForm textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+
+/*#####################################################*/
+/*####### Styles for Text Boxes, Buttons, Menus #######*/
+/*#####################################################*/
+
+/* Text box formatting */
+input {
+    padding: 3px;
+	background: var(--input-bg);
+    color: var(--input-text);
+    border: 1px solid var(--input-border);
+    border-radius: 6px;	
+	height: 25px;
+}
+
+/* 
+input[type=checkbox]:disabled + span {
+    color: gray;
+}
+ */
+
+/* dropdown menu formatting */
+select {
+    padding: 3px;
+    font-size: 16px;
+	background: var(--input-bg);
+	cursor: pointer;
+	background: var(--input-bg);/*#f1f5f9;*/
+    color: var(--input-text);/*#334155;*/
+    border: 1px solid var(--input-border);/*#cbd5e1;*/
+    padding: 8px;
+    border-radius: 8px
+}
+
+/* 
+select, input[type = checkbox] {
+    background: var(--input-bg);
+    color: var(--input-text);
+    border: 1px solid var(--input-border);
+    padding: 8px;
+    border-radius: 8px
+}
+ */
+
+/* Button styles */
+/* Make text size larger for sounding plotter buttons */
+.snd-btn {
+  font-size: 16px !important;
+  font-family: sans-serif;
+}
+
+/* Basic button colors for sounding plotter */
+.snd-btn-plain {
+	color:var(--btn-text);
+	background-color:var(--btn-bg);
+}
+
+/* Button in bottom right corner of div */
+.corner-btn {
+	position: absolute;       /* place relative to .container */
+	bottom: 15px;             /* distance from bottom edge */
+	right: 15px;              /* distance from right edge */
+}
+
+.btn-red {
+	border-color:var(--red);
+	color:var(--red);
+}
+
+.btn-green {
+	border-color:var(--green);
+	color:var(--green);
+}
+
+
+/*#######################################################*/
+/*################ Multi-Select Dropdown ################*/
+/*#######################################################*/
+
+/* Containter for multi-select dropdown menu */
+.dropdown-container {
+  position: relative;
+  width: 200px;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+/* Formatting for multi-select dropdown menu */
+.dropdown-display {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  /*background-color: #fff;*/
+  background: var(--input-bg);
+  color: var(--input-text);
+}
+
+/* Formatting for after populating multi-select dropdown menu */
+.dropdown-display::after {
+  content: "\25BC";
+  float: right;
+}
+
+/* Formatting for multi-select dropdown menu options */
+.dropdown-options {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  /*background: white;*/
+  z-index: 10;
+  border-radius: 0px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  pointer-events: auto; /* ensure clicks work */
+  background: var(--input-bg);
+  color: var(--input-text);
+}
+
+.dropdown-options label {
+  display: flex;               /* put checkbox + text on same row */
+  align-items: center;         /* vertically center them */
+  /* padding: 6px 10px; */
+  cursor: pointer;
+}
+
+.dropdown-options input[type="checkbox"] {
+  margin-right: 8px;           /* space between checkbox and text */
+  vertical-align: middle;      /* align checkbox vertically */
+  accent-color: var(--accent-color, #0284c7); /* optional: match theme */
+}
+
+.dropdown-options label:hover {
+  background-color: var(--input-hover);/*#f0f0f0;*/
+}
+
+
+/*######################################################*/
+/*################## Upload Files Box ##################*/
+/*######################################################*/
+.drop-zone {
+	border: 3px dashed #999;
+	border-radius: 10px;
+	width: 225px;         /* fixed width */
+	height: 80px;        /* fixed height */
+	padding: 5px;
+	text-align: center;
+	/*transition: background-color 0.2s, border-color 0.2s;*/
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	overflow: hidden;     /* keeps outer box size fixed */
+	background: var(--input-bg);
+	color: var(--input-drop);
+}
+.drop-zone.dragover {
+	background-color: var(--drop-bg);/*#f0f8ff;*/
+	border-color: var(--drop-border);/*#333;*/
+	color: var(--input-text);/*#111;*/
+}
+.file-list {
+	margin: 0px;
+	list-style: none;
+	padding: 0;
+	width: 100%;
+	text-align: left;
+	overflow-y: auto;     /* adds scroll if too many files */
+}
+.file-list li {
+	margin: 3px 0;
+	font-size: 14px;
+}
+
+
+/*#######################################################*/
+/*######## 3 panel grid for data loading options ########*/
+/*#######################################################*/
+
+/* Container 3 panel grid */
+.grid-container {
+  display: grid;
+  grid-template-columns: 400px 325px 275px;
+  gap: 20px;
+}
+
+/* Set margin for h2 */
+.grid-container h2 {
+  margin-top: 0;
+}
+
+/* Button style */
+.grid-container button {
+  font-size: 16px !important;
+  font-family: sans-serif;
+}
+
+/* Hidden state for real-time mode*/
+  .hidden {
+    display: none;
+  }
+
+/* Formatting for each panel (column) */
+.column {
+  background-color: #f8f8f8;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);-->
+}
+
+/* Containter for inner panel for option 1 (left panel)*/
+.col_container {
+    display: flex;
+    gap: 20px;  /* space between the two sections */
+}
+
+/* Panel sizes */
+.left-panel {width: 150px}
+.right-panel {width: 200px}
+
+/* Row style for text entry boxes for option 1 (left panel) */
+.form-row {
+    margin-bottom: 10px;
+}
+.form-row label {
+    display: inline-block;
+    width: 100px;
+}
+
+.form-row input {
+    width: 150px;
+}
+
+/* For placing label for text box on top of box for option 2 (middle panel)*/
+.input-group {
+  display: flex;
+  flex-direction: column;  /* Stack label and input vertically */
+  margin-bottom: 15px;
+  font-family: sans-serif;
+}
+.input-group label {
+  margin-bottom: 2px;
+}
+.input-group input[type="text"] {
+  padding: 4px;
+  font-size: 14px;
+}
+
+
+/*######################################################*/
+/*###################### Map Grid ######################*/
+/*######################################################*/
+
+.map-container {
+      display: flex;
+      width: 1000px;
+      height: auto;
+      margin: 20px 0px 20px 0px;
+	  align-items: flex-start;
+    }
+	
+#map {
+	flex: 4;
+    position: relative;
+	width: 100%; 
+	height: 100%; 
+}
+#map-panel { 
+	grid-column: 1; 
+	grid-row: 1; 
+}
+
+#colorbar-overlay {
+    position: absolute;
+    bottom: 27px;        /* adjust vertical position */
+    left: 830px;
+    width: 40px;       /* colorbar width */
+    height: 300px;     /* colorbar height */
+    pointer-events: none;  /* allow clicks to pass through */
+}
+
+.control-container {
+      flex: 1;
+	  height: 100%;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: flex-start;
+	  margin-left: 20px;
+    }
+
+.label-input {
+	display: flex;
+	align-items: center;
+	gap: 5px; /* space between label and input */
+	margin-top: 20px;
+}
+
+input[type="number"] {
+	width: 70px;
+	padding: 5px;
+	font-size: 16px;
+}
+input[type="range"] {
+	flex: 1;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+	
+#plot-container {
+      position: relative;
+      width: 1000px;
+      height: auto;
+      margin: 20px 0px 20px 0px;
+    }
+
+
+/*#######################################################*/
+/*################## Loading Animation ##################*/
+/*#######################################################*/
+
+/* Spinner overlay */
+#loader {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 10;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+/*######################################################*/
+/*#################### Data Browser ####################*/
+/*######################################################*/
+
+.browser-container {
+      width: 1000px;
+      height: auto;
+      margin: 20px 0px 20px 0px;
+    }
+
+#loader-bar {
+  transition: width 0.3s ease;
+}
+
+#browser-overlay {
+	display:none;
+	position:fixed;
+	inset:0;
+	background:rgba(0,0,0,0.75);
+	z-index:1000;
+	align-items:flex-start;
+	justify-content:center;
+	padding-top:40px;
+}
+
+#browser-panel {
+	background:var(--modal-bg);/* #0d1117; */
+	border:1px solid #2a3a4a;
+	border-radius:6px;
+	width:820px;
+	max-width:96vw;
+	max-height:80vh;
+	display:flex;
+	flex-direction:column;
+	overflow:hidden;
+}
+
+#browser-overlay select {
+	background:var(--input-bg);
+	border:1px solid var(--input-border);
+	color:var(--input-text);
+	font-family:monospace;
+	font-size:11px;
+	padding:4px 8px;
+	border-radius:3px;
+	cursor: pointer;
+}
+
+.url-form {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    align-items: center;
+    margin-left: 10px;
+  }
+  .url-form input {
+    flex: 1;
+    padding: 6px 10px;
+    font-family: sans-serif;
+    transition: border-color 0.2s;
+  }
+  /* .url-form input:focus { border-color: var(--amber-dim); } */
+  /* .url-form input::placeholder { color: var(--text-dim); } */
+
+
+  .status-badge {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .status-badge.idle { color: var(--text-dim); border: 1px solid var(--border); }
+  .status-badge.loading { color: var(--amber); border: 1px solid var(--amber-dim); animation: pulse 1s infinite; }
+  .status-badge.ok { color: var(--green); border: 1px solid var(--green) }
+  .status-badge.err { color: var(--red); border: 1px solid var(--red) }
+  
+
+/* Browser overlay */
+#browser-overlay { display:none; }
+#browser-overlay.open { display:flex !important; }
+.flight-card {
+    background: var(--browser-bg);
+    border: 1px solid #1e2d40;
+    border-radius: 4px;
+    padding: 7px 10px;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: 12px;
+    color: var(--text);
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+}
+.flight-card:hover { border-color: #2a4a6a; color: var(--browser-hover-text); background: var(--browser-hover); }
+.flight-card.selected { border-color: #f5a623; color: #f5a623; background: var(--browser-hover); }
+.flight-card.loaded  { border-color: #2a7a4a; color: #4a9; }
+.flight-card input[type=checkbox] { accent-color: #f5a623; }
+.fc-id { font-weight: bold; font-size: 12px; }
+.fc-meta { font-size: 10px; color: --browser_subtext; margin-top:1px; }
+.flight-card.selected .fc-meta { color: #8a6020; }
+.flight-card.loaded .fc-meta { color: #2a5a3a; }
+  
+  
+  
+/* //////////////////////////////////////////////////////// */
+/* //////////////////////// Modals //////////////////////// */
+/* //////////////////////////////////////////////////////// */
+
+/* Modal Background */
+.modal-background{
+	position:fixed;
+	inset:0;
+	/*background:rgba(0,0,0,0.6);*/
+	display:none;
+	align-items:center;
+	justify-content:center;
+	overflow: hidden;
+    z-index: 9999;
+    opacity: 1; /* required for JS fade */
+}
+
+/* Modal Box */
+.modal-content{
+	background:var(--modal-bg);
+    color: var(--text);
+	padding:18px; /*1.5rem;*/
+	border-radius:12px;
+	max-width:720px; /*450px;*/
+	width:94%; /*90%*/
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    position: relative;
+	
+	max-height: 90vh;   /* max 80% of screen height */
+	overflow-y: auto;   /* scrolls only inside modal */
+	position: relative; /* ensures close button stays visible */
+}
+
+/* Close button */
+.close-modal {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
