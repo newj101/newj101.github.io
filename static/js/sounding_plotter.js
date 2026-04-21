@@ -192,7 +192,7 @@ function reset_app() {
 function clearPlot() {
     // Change to blank plot
     const img = document.getElementById('plot-img');
-    img.src = "blank_plot.png";
+    img.src = "../static/images/blank_plot.png";
     
     // Reset dropdown
     const dropdown = document.getElementById("file-dropdown");
