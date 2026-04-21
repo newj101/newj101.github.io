@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Load Plotly for map -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Load CSS Style File -->
+    <link rel="stylesheet" href="../static/css/main.css">
+	<link rel="stylesheet" href="../static/css/sounding_plotter.css">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+	
+	<!-- Javascript libraries for reading dropsonde data -->
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/> -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/jsfive@0.3.10/dist/browser/hdf5.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/netcdfjs@latest/dist/netcdfjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+	
+</head>
+
+<body>
+	<!-- Special style for header -->
+	<header style="padding:16px 24px; background:var(--card); box-shadow:0 2px 8px rgba(0,0,0,0.1)">
+	<div class="brand">
+		<a class="logo" onclick="openModal('instructionsModal', 'sndplt_instructions')" style="cursor: pointer;">
+          <img src="snd_plotter_logo.svg" alt="NJ Logo" width="48" height="48">
+		</a>
+        <!--<div class="logo">NJ</div>-->
+        <div>
+            <h2 style="margin-bottom: 0px; margin-top: 0px;">Dropsonde Sounding Plotter</h2>
+            <!-- <p class="lead">By Nicholas E. Johnson</p> -->
+        </div>
+	</div>
+		<nav>
+			<!-- <a href="https://newj101.github.io/index.html">Home</a> -->
+			<!-- <a href="https://newj101.github.io/research.html">Research</a> -->
+			<!-- <a href="/">Dropsonde Plotter</a> -->
+			<!-- <button id="openInstructions" class="toggle-theme btn-primary" onclick="openModal('instructionsModal', 'sndplt_instructions')">Information</button> -->
+			<!-- <button                       class="toggle-theme btn-ghost"     onclick="reset_input()">Reset App</button> -->
+			<button id="toggleTheme"      class="toggle-theme">🌙 Dark</button>
+			
+
+			
+		</nav>
+	</header>
+	
+	<main class="site-main">
+
+	<!-- Header buttons, not sure if I like them here, but leaving for now -->
+    <div class="app-btns">
+	
+		<button id="realtime-btn" class="btn snd-btn btn-primary"   onclick="realtime_activate()"  >Real-Time Mode</button>
+        <button id="research-btn" class="btn snd-btn snd-btn-plain" onclick="realtime_deactivate()">Research Mode</button>
+	
+		<div class="right-btns">
+			<button id="openInstructions" class="btn snd-btn snd-btn-plain"  onclick="openModal('instructionsModal')">Information</button>
+			<!-- <button                       class="btn snd-btn snd-btn-plain"  onclick="reset_input()">Reset App</button> -->
+		</div>
+    </div>
+
+
+	<!-- Real-time control section -->
+	<div id="rt_controls" class="card browser-container">
+		<div style=" display: flex; align-items: center; gap: 10px;">
+			<button class="btn snd-btn-plain" onclick="checkRtUpdates()">Check for Updates</button>
+			<!-- <button class="btn snd-btn-plain btn-red" onclick="stop_precompute()">Stop Caching</button> -->
+			<div id="realtime-text"></div>
+		</div>
+
+		<!-- Loader bar for realtime data -->
+		<div id="loader-count_rt"></div>
+		<div id="loader-container_rt" style="display: none; width: 300px; border: 1px solid var(--border); margin-top:10px;">
+		  <div id="loader-bar_rt" style="width: 0%; height: 20px; background: #4caf50;"></div>
+		</div>
+		<div id="loader-text_rt"></div>
+		<div id="cache-btns_rt" style="display:none; align-items:right; gap:10px; margin-top:10px;">
+			<button class="btn snd-btn-plain btn-green" onclick="precompute_plots()">START CACHING</button>  <!-- Stop caching button -->
+			<button class="btn snd-btn-plain btn-red"   onclick="stop_precompute()">STOP CACHING</button>  <!-- Stop caching button -->
+		</div>
+	</div>
+
+    <!-- AOML Data Browser -->
+    <div id="data-browser" class="card browser-container hidden">
+		<div style=" display: flex; align-items: flex-start;">
+			<button class="btn snd-btn-plain" onclick="openBrowser()">&#9776; BROWSE AOML DATA</button>  <!-- Data browser -->
+			<div class="url-form">
+				<input type="text" id="url-input" placeholder="Flight ID e.g. 20240630IH1  or full https:// URL" />  <!-- Input box for loading specific flight ID -->
+				<button class="btn snd-btn-plain" onclick="loadFlightById()">LOAD FLIGHT</button>  <!-- Button to load flight that was placed in input box -->
+				<button class="btn snd-btn-plain btn-red" onclick="reset_app()">CLEAR MAP</button>  <!-- Clear map button (also resets loaded data)-->
+				<div class="status-badge idle" id="status">IDLE</div> <!-- status badge -->
+			</div>
+		</div>
+
+		<div id="loader-container" style="display: none; width: 300px; border: 1px solid var(--border); margin-top:10px;">
+		  <div id="loader-bar" style="width: 0%; height: 20px; background: #4caf50;"></div>
+		</div>
+		<div id="loader-text"></div>
+		<div id="cache-btns" style="display:none; align-items:right; gap:10px; margin-top:10px;">
+			<button class="btn snd-btn-plain btn-green" onclick="precompute_plots()">START CACHING</button>  <!-- Stop caching button -->
+			<button class="btn snd-btn-plain btn-red"   onclick="stop_precompute()">STOP CACHING</button>  <!-- Stop caching button -->
+		</div>
+    </div>
+	
+	
+	
+	<!-- Container for Plotly Map and Variable Plotter-->
+    <!--<div id="map" style="width:1040px; height:auto; margin:20px 0px 20px 0px;"></div>-->
+	<div class="map-container card">
+		<!-- <div id="loader"><div class="spinner"></div></div> -->
+		<div id="map" style="overflow: hidden; position: relative;"></div>
+        <!--<div id="colorbar-overlay"></div>-->
+		<div class="control-container card">
+			<!-- Variable shading selector -->
+			<label for="variableSelect" style="margin-bottom: 10px;"><strong>Plot Dropsonde Variable</strong></label>
+		    <select id="variableSelect" disabled>
+				<option value="">-- Select Variable --</option>
+			</select>
+			
+            <!-- Wind barb ploting checkbox -->
+            <!--<label><input type="checkbox" id="plotWind" style="margin-top: 10px;" disabled><span>Plot Wind Barbs</span></label>-->
+            
+			<!-- Height Selector -->
+			<div class="label-input">
+				<label for="heightInput">Height (m):</label>
+				<input type="number" id="heightInput" step="any" disabled>
+			</div>
+			<input type="range" id="heightSlider" disabled>
+		</div>
+	</div>
+
+
+
+
+	<!-- Plot container -->
+	<div id="plot-container" class="card">
+		<!-- Dropdown menus for selecting dropsonde and sounding overlays -->
+		<div style="display: flex; gap: 20px;">
+			<div>
+				<select id="file-dropdown"  onchange="dropdownSelect(this)">
+				  <option value="">-- Select a File --</option>
+				</select>
+			</div>
+			<div>
+				<select id="overlay-dropdown" onchange="onOverlaySelect(this)">
+				  <option value="None">-- Overlay Mean Sounding --</option>
+				  <option value="MT">Moist Tropical</option>
+				  <option value="SAL">Saharan Air Layer</option>
+				  <option value="MLDAI">Mid-Latitude Dry Air Intrusion</option>
+				</select>
+			</div>
+		</div>
+		
+		<!-- Container for sounding plot. Fill with blank SkewT -->
+		<div id="sounding-plot">
+		<!-- <div id="loader"><div class="spinner"></div></div> -->
+			<img id="plot-img" src="blank_plot.png" alt="Blank Image" style="width:1000px; margin: 20px 0px 20px 0px; display:block;"/>
+		</div>
+		
+		<!-- Buttons to save and clear plot -->
+		<div id="plot_buttons">
+			<button id="clear-btn"    class="btn snd-btn snd-btn-plain" onclick="clearPlot()">Clear Plot</button>
+			<button id="save-btn"     class="btn snd-btn btn-primary" onclick="savePlot()">Save Plot</button>
+			<button id="openFeedback" class="btn snd-btn snd-btn-plain" style="margin-left: 638px;" onclick="openModal('feedbackModal')">Send Feedback</button>
+		</div>
+	</div>
+
+
+
+	<footer>
+		<small>&copy; 2026 Nicholas E. Johnson</small>
+	</footer>
+	
+	
+	<!-- DATA BROWSER OVERLAY -->
+    <div id="browser-overlay">
+      <div id="browser-panel">
+        <div style="display:flex;align-items:center;padding:10px 16px;border-bottom:1px solid #1e2d40;gap:12px;flex-shrink:0;">
+          <span style="font-family:monospace;font-size:12px;color:var(--orange);letter-spacing:2px;">AOML DROPSONDE ARCHIVE</span>
+          <div style="flex:1;display:flex;gap:8px;align-items:center;">
+            <select id="br-year" onchange="browseYear()">
+              <option value="">-- Select Year --</option>
+            </select>
+            <select id="br-campaign" onchange="browseCampaign()">
+              <option value="">-- Select Campaign --</option>
+            </select>
+            <span id="br-status" style="font-family:monospace;font-size:10px;color:#556;"></span>
+          </div>
+          <button class="btn snd-btn-plain btn-green" onclick="loadSelectedFlights()">LOAD SELECTED</button>
+          <button class="btn snd-btn-plain btn-red" onclick="closeBrowser()">&#x2715; CLOSE</button>
+        </div>
+        <div style="padding:8px 16px;border-bottom:1px solid #1a2530;flex-shrink:0;display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+          <span style="font-family:monospace;font-size:10px;color:#556;">FILTER:</span>
+          <input id="br-filter" type="text" placeholder="date or ID (e.g. 20240910)" style="border:1px solid #1e2d40;font-family:monospace;font-size:11px;padding:3px 8px;border-radius:3px;width:160px;" oninput="filterFlights()">
+          <label style="font-family:monospace;font-size:10px;color:var(--text);cursor:pointer;">
+            <input type="checkbox" id="br-sel-all" onchange="toggleSelectAll()"> SELECT ALL VISIBLE
+          </label>
+          <span id="br-sel-count" style="font-family:monospace;font-size:10px;color:#f5a623;"></span>
+        </div>
+        <div id="br-flight-list" style="flex:1;overflow-y:auto;padding:8px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:6px;align-content:start;">
+          <div style="color:var(--text);font-family:monospace;font-size:11px;grid-column:1/-1;">Select a year and campaign to browse flights.</div>
+        </div>
+      </div>
+    </div>
+	
+	
+	<!-- Modals -->
+	
+	<!-- Instructions Modal -->
+	<div id="instructionsModal" class="modal-background">
+		<div class="modal-content" style="max-width: 80%;">
+			<button class="btn snd-btn snd-btn-plain" onclick="closeModal('instructionsModal')" style="float:right">Close</button>
+			<!--<span id="closeBtn" class="close">&times;</span>-->
+			<div id="instructionsModalContent">
+				<h2 style="margin-bottom:-10px;">Dropsonde Sounding Plotter App</h2>
+				<p>
+					Author: Nicholas E. Johnson, <a target="_blank" href="mailto:nejohnson@albany.edu">nejohnson@albany.edu<a><br>
+					Last Updated: 6 November 2025<br><br>
+					Feedback is appreciated! If you have any comments or suggestions please send them to me using the "Send Feedback" button or by email.
+				</p>
+
+				<h3 style="margin-top: 30px;">Description</h3>
+				<p>
+					This app provides an interface for plotting dropsonde soundings. Dropsonde data can be provided locally or it can be loaded remotely. The dropsonde locations are displayed on the map and can be selected to plot the sounding for that location. The sounding plot includes derived quantities including convective parameters, wind shear, lapse rates, dropsonde trajectory, and mean low-level winds (WL150 and MBLWND). Three mean sounding overlays are provided to compare with the observed soundings. In addition to plotting the sounding on the SkewT plot, dropsonde measurements at a selected height can be shown on the map.
+				</p>
+
+
+				<h3 style="margin-top: 30px;">Instructions</h3>
+
+				<p>
+					<strong>Loading data</strong>
+					<br>
+					There are three options for loading dropsonde data:
+					<ol type="1" style="margin-top: -10px;">
+					  <li style="margin-bottom: 10px;">First, provide the TC name and year in the text boxes. Second, click the "Select Flight Codes" menu and select one or more flight codes from which to load the data. Third, click the "Load Data" button for Option 1.</li>
+					  <li style="margin-bottom: 10px;">Enter the flight code for a single flight as YYYYMMDD{A}{X}, where {A} is "H" for NOAA42, "I" for NOAA43, or "N" for NOAA49; and {X} is "1" or "2" for the first or second flight on the given aircraft and date. Then, click the "Load Data" button for Option 2.</li>
+					  <li style="margin-bottom: 10px;">Upload local dropsonde files in FRD, EOL, netCDF, or BUFR format. Then, click the "Load Data" button for Option 3.</li>
+					</ol>
+					Loading the data will take a few moments. Loading less data will speed up the process. After loading the data, the dropsonde locations will be marked on the map.
+				</p>
+
+				<p style="margin-top:30px;">
+					<strong>Plotting the SkewT</strong>
+					<br>
+					Using the dropsonde location points on the map, click the point for the dropsonde from which to plot the skewT. The selected dropsonde will be highlighted in red. The skewT will take a few seconds to plot. Alternatively, instead of selecting a dropsonde from the map, a skewT can be plotted by using the "-- Select a File --" dropdown menu on the top left of the skewT plot. The dropdown menu displays the file names for each dropsonde that was loaded.
+					<br><br>
+					To overlay a mean sounding use the "-- Overlay Mean Sounding --" dropdown menu above the skewT plot. Three options are currently provided from Dunion (2011): moist tropical, saharan air layer, and mid-latitude dry air intrusion. The mean soundings can be plotted regardless of whether a dropsonde sounding has been plotted.
+					<br><br>
+					The skewT may be saved or cleared using the buttons below the plot. The plot does <strong>not</strong> need to be cleared every time a new dropsonde is plotted. 
+				</p>
+
+				<p style="margin-top:30px;">
+					<strong>Plotting dropsonde variables</strong>
+					<br>
+					The dropsonde points on the map can be shaded to show a measured dropsonde quantity at a given height. To the right of the map, use the "-- Select Variable --" dropdown menu to select the quantity to plot. Options include: 
+					
+					<ul style="margin-top: -10px; margin-bottom:5px;">
+					  <li>Pressure (hPa)</li>
+					  <li>Temperature (°C)</li>
+					  <li>Dew Point Temperature (°C)</li>
+					  <li>Relative Humidity (%)</li>
+					  <li>Equivalent Potential Temperature (K)</li>
+					  <li>Wind Speed (m/s)</li>
+					  <li>Vertical Wind* (m/s)</li>
+					</ul>
+
+					The value of the quantity for each dropsonde can be viewed by hovering the curser over the dropsonde point on the map. The height of the dropsonde quantity shown on the map can be set using the height slider or by entering a height in the input box below the variable selection dropdown menu.
+					<br><br>
+					*The vertical wind measurements are estimates and may have significant errors.
+				</p>
+
+				<p style="margin-top:30px;">
+					<strong>Additional Information</strong>
+					<ul style="margin-top: -10px; margin-bottom:5px;">
+						<li style="margin-bottom: 10px;">The app may be reset using the "Reset App" button. Reseting the app will remove all loaded dropsonde data and return all settings to defaults.</li>
+						<li style="margin-bottom: 10px;">WL150 is the average wind over the lowest available 150 m of the wind sounding. Information about the WL150 algorithm can be found <a target="_blank" href="https://ncar.github.io/aspendocs/algo_wl150.html">here<a>.</li>
+						<li style="margin-bottom: 10px;">MBLWND is the mean boundary level wind. The mean wind in the lowest 500 meters of the sounding</li>
+					</ul>
+				</p>
+
+				<h3 style="margin-top: 30px;">Acknowlegements</h3>
+
+				<p>
+					<ul style="margin-top: -10px; margin-bottom:5px;">
+						<li style="margin-bottom: 10px;">The sounding plot is inspired by the <a target="_blank" href="https://github.com/sharppy/SHARPpy">SHARPpy</a> toolkit and relies on <a target="_blank" href="https://unidata.github.io/MetPy/latest/index.html">MetPy</a> tools to generate the SkewT plot and calculate sounding quantities.</li>
+						<li style="margin-bottom: 10px;">The mean soundings are from <a target="_blank" href="https://doi.org/10.1175/2010JCLI3496.1">Dunion (2011)</a>.</li>
+					</ul>
+				</p>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Feedback Modal -->
+    <div id="feedbackModal" class="modal-background">
+      <div class="modal-content" style="max-width: 50%;">
+        <!-- <span class="close-modal">&times;</span> -->
+		<button class="btn snd-btn snd-btn-plain" onclick="closeModal('feedbackModal')" style="float:right">Close</button>
+        <h2>Send Feedback</h2>
+
+        <form id="feedbackModalForm" action="https://formspree.io/f/mkgpdrln" method="POST">
+          <input type="text" name="name" placeholder="Your name (optional)">
+          <input type="email" name="email" placeholder="Your email (optional)">
+          <textarea name="message" placeholder="Your message..." required></textarea>
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+
+        <p id="feedbackModalStatus"></p>
+      </div>
+    </div>
+	
+	
+	<!-- Loading overlay (single element) -->
+	<div id="loader"><div class="spinner"></div></div>
+	
+
+    <!-- Java script code for buttons, dropdown menus, map amd connection to Python backend-->
+    <!-- <script src="../static/js/sounding_plotter.js"></script> -->
+    <script src="sounding_plotter.js"></script>
+
+
+
+</body>
+</html>
