@@ -60,7 +60,7 @@
 
 
 	<!-- Real-time control section -->
-	<div id="rt_controls" class="card browser-container">
+	<div id="rt_controls" class="card browser-container hidden">
 		<div style=" display: flex; align-items: center; gap: 10px;">
 			<button class="btn snd-btn-plain" onclick="checkRtUpdates()">Check for Updates</button>
 			<!-- <button class="btn snd-btn-plain btn-red" onclick="stop_precompute()">Stop Caching</button> -->
@@ -80,7 +80,7 @@
 	</div>
 
     <!-- AOML Data Browser -->
-    <div id="data-browser" class="card browser-container hidden">
+    <div id="data-browser" class="card browser-container">
 		<div style=" display: flex; align-items: flex-start;">
 			<button class="btn snd-btn-plain" onclick="openBrowser()">&#9776; BROWSE AOML DATA</button>  <!-- Data browser -->
 			<div class="url-form">
@@ -234,7 +234,7 @@
 					  <li style="margin-bottom: 10px;">Select a flight(s) from the data browser.</li>
 					  <li style="margin-bottom: 10px;">Type a flight ID or url to a dropsonde file in the input box.</li>
 					</ol>
-					Loading the data will take a few moments. Loading less data will speed up the process. After loading the data, the dropsonde locations will be marked on the map.
+					After loading the data, the dropsonde locations will be marked on the map. Plotting the sounding will take a few moments. Caching the plot images can speed up the process.
 				</p>
 
 				<p style="margin-top:30px;">
