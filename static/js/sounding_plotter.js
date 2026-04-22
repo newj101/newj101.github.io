@@ -20,8 +20,8 @@ let map;
 let mapLats = [];
 let mapLons = [];
 
-//let allCampaigns = [];
-//let currentFlights = [];
+let allCampaigns = [];
+let currentFlights = [];
 let selectedFlights = new Set();
 let loadedFlightIds = new Set();
 
